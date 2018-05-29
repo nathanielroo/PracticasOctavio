@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "node app.js"
   },
-  "author": "Angel",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",
