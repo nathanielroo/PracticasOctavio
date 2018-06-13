@@ -10,7 +10,7 @@
  var routes = require("./routes");
  var app = express();
 
- mongoose.connect("mongodb://localhost:27017/zombie_nest");
+ mongoose.connect("mongodb://localhost:27017/zombie-social");
  app.set("port",process.env.PORT || 3000);
 
  app.set("views", path.resolve(__dirname,"views"));
