@@ -46,7 +46,18 @@ router.post("/signup",(req,res,next)=>{
         newZombie.save(next);
         return res.redirect("/");
     });
-        
+
+});
+router.get("/profile/:username",(req,res,next)=>{
+    Zombie.findOne({username:req.params.username},(err,zombie)=>{
+        if(err){
+            return next(err);
+        }
+        if(!zombie){
+            return next(404);
+        }
+        res.render("profile",{zombie:zombie});
+    });
 });
 
 module.exports = router;
