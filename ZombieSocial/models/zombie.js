@@ -7,16 +7,16 @@ var zombieSchema = mongoose.Schema({
     username:{type:String,required:true,unique:true},
     password:{type:String,required:true},
     createdAt:{type:Date,default:Date.now},
-    displayName:{type:String,required:true},
+    displayName:{type:String},
     bio:String
 });
 
 var donothing= ()=>{
     
 }
-zombieSchema.pre("save",(done)=>{
+zombieSchema.pre("save",function(done){
     var zombie = this;
-    if(!zomie.isModified("password")){
+    if(!zombie.isModified("password")){
         return done();
     }
     bcrypt.genSalt(SALT_FACTOR,(err, salt)=>{
