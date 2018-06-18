@@ -48,7 +48,7 @@ router.post("/signup",(req,res,next)=>{
     });
 
 });
-router.get("/profile/:username",(req,res,next)=>{
+router.get("/zombies/:username",(req,res,next)=>{
     Zombie.findOne({username:req.params.username},(err,zombie)=>{
         if(err){
             return next(err);
