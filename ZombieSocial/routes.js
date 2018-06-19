@@ -65,5 +65,32 @@ router.get("/re-weapons",(req,res)=>{
     res.render("re-weapons");
 });
 
+router.post("/re-weapons",(req,res,next)=>{
+    var description = req.body.description;
+    var force = req.body.force;
+    var category = req.body.category;
+    var ammo = req.body.ammo;
+
+    var newWeapon = new Weapon({
+        description: description,
+        force: force,
+        category: category,
+        ammo: ammo
+    }); 
+    newWeapon.save(next);
+    return res.redirect("/weapons");
+    
+});
+
+router.get("/weapons",(req,res,next) =>{
+    Weapon.find()
+        .sort({ createdAt: "descending"})
+        .exec((err,weapons) =>{
+            if(err){
+                return next(err);
+            }
+            res.render("weapons",{weapons: weapons});
+        });
+});
 
 module.exports = router;

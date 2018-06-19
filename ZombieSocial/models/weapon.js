@@ -5,20 +5,9 @@ var SALT_FACTOR = 10;
 
 var weaponSchema = mongoose.Schema({
     description:{type:String,required:true},
-    force:{type:Number,required:true},
+    force:{type:Number,require:true},
     category:{type:String,required:true},
-    ammo:{type:Boolean},    
-});
-
-var donothing= ()=>{
-    
-}
-weaponSchema.pre("save",function(done){
-    var weapon = this;
-    if(!weapon.isModified("description")){
-        return done();
-
-    };
+    ammo:{type:Boolean,require:true}    
 });
 
 var Weapon = mongoose.model("Weapon",weaponSchema);
