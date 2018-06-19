@@ -1,5 +1,6 @@
 var express = require("express");
 var Zombie = require("./models/zombie");
+var Weapon = require("./models/weapon");
 
 var passport = require("passport");
 
@@ -59,5 +60,10 @@ router.get("/zombies/:username",(req,res,next)=>{
         res.render("profile",{zombie:zombie});
     });
 });
+
+router.get("/re-weapons",(req,res)=>{
+    res.render("re-weapons");
+});
+
 
 module.exports = router;

@@ -1,0 +1,27 @@
+<% include _header%>
+
+<h1>Registro</h1>
+
+<form action = "/signup" method="post">
+    <div class ="form-group">
+        <input name="description" type="text" class="form-control"
+        placeholder="Descripción" required autofocus/>
+    </div>
+    <div class="form-group">
+        <input name="force" type="text" class="form-control"
+        placeholder="Fuerza" required/>
+    </div>
+    <div class ="form-group">
+        <input name="category" type="text" class="form-control"
+        placeholder="Categoria" required autofocus/>
+    </div>
+    <div class="form-group">
+        <input name="ammo" type="text" class="form-control"
+        placeholder="Municiones" required/>
+    </div>
+    <input type="submit" value="Registrar"
+     class="btn btn-primary btn-block"/>
+    
+</form>
+
+<% include _footer%>

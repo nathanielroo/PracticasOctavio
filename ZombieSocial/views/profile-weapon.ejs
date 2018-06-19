@@ -1,0 +1,14 @@
+<% include _header%>
+
+<% if((currentWeapon)&&(currentWeapon.id === weapon.id)){%>
+    <a href="/edit" class="pull-right">Edita tu perfil :D</a>
+<%}%>
+
+<h1><%=weapon.description()%></h1>
+<h2>Se registró la arma <%=weapon.description%></h2>
+
+<%if(weapon.force){%>
+    <p><%=weapon.force%></p>
+<%}%>
+
+<% include _footer%>
