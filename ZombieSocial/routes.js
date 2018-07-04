@@ -10,6 +10,7 @@ router.use((req,res,next)=>{
     res.locals.currentZombie = req.zombie;
     res.locals.errors = req.flash("error");
     res.locals.infos = req.flash("info");
+    console.log(req.zombie);
     next();
 });
 
@@ -102,5 +103,39 @@ router.post("/login",passport.authenticate("login",{
     failureRedirect:"/login",
     failureFlash: true
 }));
+router.get("/logout",(req,res)=>{
+    req.logout();
+    res.redirect("/");
+});
+
+
+router.get("/edit",ensureAuthenticated, (req,res)=>{
+    res.render("edit");
+});
+
+router.post("edit", ensureAuthenticated,(req,res,next)=>{
+    req.zombie.displayName = req.body.displayName;
+        req.zombie.bio = req.body.bio;
+        req.zombie.save((err)=>{
+            if(err){
+                next(err);
+                return;
+            }
+            req.flash("info","Perfil Actualizado");
+            res.redirect("/edit");
+        });
+});
+
+
+
+
+function ensureAuthenticated(req,res,next){
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        req.flash("info","Necesitas iniciar sesión para poder ver esta sección");
+        req.redirect("/login");
+    }
+}
 
 module.exports = router;
