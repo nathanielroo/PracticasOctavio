@@ -3,8 +3,18 @@ var Zombie = require("./models/zombie");
 var Weapon = require("./models/weapon");
 
 var passport = require("passport");
+var acl = require("express-acl");
 
 var router = express.Router();
+
+acl.config({
+    baseUrl:'/',
+    defaultRole:'zombie',
+    decodedObjectName:'zombie',
+    roleSearchPath:'zombie.role',
+    path:"./ZombieSocial"
+});
+
 
 router.use((req,res,next)=>{
     res.locals.currentZombie = req.zombie;
@@ -32,7 +42,7 @@ router.get("/signup",(req,res)=>{
 router.post("/signup",(req,res,next)=>{
     var username = req.body.username;
     var password = req.body.password;
-
+    var role = req.body.role;
     Zombie.findOne({username:username},(err,zombie)=>{
         if(err){
             return next(err);
@@ -43,7 +53,8 @@ router.post("/signup",(req,res,next)=>{
         }
         var newZombie = new Zombie({
             username:username,
-            password:password
+            password:password,
+            role: role
         });
         newZombie.save(next);
         return res.redirect("/");
@@ -113,7 +124,7 @@ router.get("/edit",ensureAuthenticated, (req,res)=>{
     res.render("edit");
 });
 
-router.post("edit", ensureAuthenticated,(req,res,next)=>{
+router.post("/edit", ensureAuthenticated,(req,res,next)=>{
     req.zombie.displayName = req.body.displayName;
         req.zombie.bio = req.body.bio;
         req.zombie.save((err)=>{
@@ -134,7 +145,7 @@ function ensureAuthenticated(req,res,next){
         next();
     }else{
         req.flash("info","Necesitas iniciar sesión para poder ver esta sección");
-        req.redirect("/login");
+        res.redirect("/login");
     }
 }
 
