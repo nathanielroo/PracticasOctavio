@@ -20,6 +20,9 @@ router.use((req,res,next)=>{
     res.locals.currentZombie = req.zombie;
     res.locals.errors = req.flash("error");
     res.locals.infos = req.flash("info");
+    if(req.session.passport){
+        req.session.role = req.zombie.role;
+    }
     console.log(req.zombie);
     next();
 });

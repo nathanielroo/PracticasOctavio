@@ -2,8 +2,8 @@
 <h1> Bienvenid@ a la guarida zombie rich </h1>
 
 <% zombies.forEach((zombie)=> {%>
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="panel panel-default" id="container">
+    <div class="panel-heading" id="container">
         <a href="/zombies/<%= zombie.username %>">
             <%= zombie.name() %>
         </a>
