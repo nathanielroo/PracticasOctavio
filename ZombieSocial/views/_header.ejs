@@ -176,7 +176,10 @@
         </li>
         <li>
             <a href="/logout">Salir</a>
-        </li>
+		</li>
+		<li>
+			<a> <%= currentZombie.rol()%></a>
+		</li>
         <% } else {%>  
             <li>
                     <a  href="/">Zombie Nest</a>
@@ -203,7 +206,7 @@
     <% }) %>
     <% infos.forEach(function(info) { %>
         <div class= "alert alert-info" role="alert">
-    <%= info %>
+    <%  info %>
         </div>
     <% }) %>
     

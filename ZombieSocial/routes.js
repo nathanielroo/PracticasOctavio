@@ -11,16 +11,17 @@ acl.config({
     baseUrl:'/',
     defaultRole:'zombie',
     decodedObjectName:'zombie',
-    roleSearchPath:'zombie.role',
-    path:"./ZombieSocial"
+    roleSearchPath:'zombie.role'
+    
 });
 
+router.use(acl.authorize);
 
 router.use((req,res,next)=>{
     res.locals.currentZombie = req.zombie;
     res.locals.errors = req.flash("error");
     res.locals.infos = req.flash("info");
-    if(req.session.passport){
+    if(req.isAuthenticated()){
         req.session.role = req.zombie.role;
     }
     console.log(req.zombie);
