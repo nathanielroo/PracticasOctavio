@@ -167,7 +167,10 @@
             <a href="/edit">
             Hola, <%= currentZombie.name()%>
             </a>
-        </li>
+		</li>
+		<li>
+			<a> <%= currentZombie.rol()%></a>
+		</li>
         <li>
         <a href="/re-weapons">Registrar arma</a>
         </li>
@@ -176,9 +179,6 @@
         </li>
         <li>
             <a href="/logout">Salir</a>
-		</li>
-		<li>
-			<a> <%= currentZombie.rol()%></a>
 		</li>
         <% } else {%>  
             <li>
